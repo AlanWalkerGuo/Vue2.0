@@ -12,18 +12,43 @@
     <hr>
     <div id="app">
         <ul>
-            <!--放到要循环的标签上面-->
-            <li v-for="item in items">
+            <!--换成新命名的sortItems-->
+            <li v-for="item in sortItems">
                 {{item}}
             </li>
         </ul>
+        
+ 
+        
+        <table>
+            <tr><th>姓名</th><th>年龄</th></tr>
+            <tr v-for="student in students">
+                <td>{{student.name}}</td>
+                <td>{{student.age}}</td>
+            </tr>
+        </table>
+       
     </div>
     
     <script type="text/javascript">
         var app=new new Vue({
             el:'#app',
             data:{
-                items:[5,6,8,2,9]
+                items:[51,61,81,21,91,3],
+                students:[
+                    {name:'张三',age:30},
+                    {name:'李四',age:20},
+                    {name:'王五',age:10}
+                   
+                ]
+            },
+            computed:{
+                //从新命名不能与items冲突
+                sortItems:function(){
+                    return this.items.sort(function(a,b){
+                        return a-b;
+                    })
+                }
             }
         })
     
