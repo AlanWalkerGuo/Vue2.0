@@ -21,14 +21,21 @@
  
         
         <table>
-            <tr><th>姓名</th><th>年龄</th></tr>
-            <tr v-for="student in students">
+            <tr><th>序号</th><th>姓名</th><th>年龄</th></tr>
+            <tr v-for="(student,index) in sortStudents">
+                <td>{{index+1}}</td>
                 <td>{{student.name}}</td>
                 <td>{{student.age}}</td>
             </tr>
         </table>
+
+        <ul>
+            <li v-for='(value,key,index) in animals'>
+                {{index}} - {{key}} - {{value}}
+            </li>
+        </ul>
        
-    </div>
+    </div>  
     
     <script type="text/javascript">
         var app=new new Vue({
@@ -40,7 +47,11 @@
                     {name:'李四',age:20},
                     {name:'王五',age:10}
                    
-                ]
+                ],
+                animals:{
+                    name:'狗',
+                    cry:'汪汪'
+                }
             },
             computed:{
                 //从新命名不能与items冲突
@@ -48,10 +59,24 @@
                     return this.items.sort(function(a,b){
                         return a-b;
                     })
+                },
+                sortStudents:function(){
+                  return sortByKey(this.students,'age');
                 }
             }
         })
     
+        
+
+        //数组对象方法排序:
+        function sortByKey(array,key){
+                return array.sort(function(a,b){
+                var x=a[key];
+                var y=b[key];
+                return ((x<y)?-1:((x>y)?1:0));
+            });
+        }
+            
     </script>
 </body>
 </html>
