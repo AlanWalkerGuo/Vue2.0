@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on实例</title>
+    <script type="text/javascript"  src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-on实例</h1>
+    <div id="app">
+        本场比赛得分:{{fenshu}}
+        <p>
+            <button v-on:click="jiafen">加分</button>
+            <!--@缩写语法-->
+            <button @click="jianfen">减分</button>
+        </p>
+        <p>
+            <!--keyup键盘监听事件当按下enter时触发事件或者写成enter健的值13-->
+            <input type="text" v-on:keyup.enter="onEnter" >
+           
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        var app=new new Vue({
+            el:'#app',
+            data:{
+                fenshu:0
+            },
+            //可以写多个方法
+            methods: {
+                jiafen:function(){
+                    this.fenshu++;
+                },
+                jianfen:function(){
+                    this.fenshu--;
+                },
+                onEnter:function(){
+                  this.fenshu= this.fenshu+2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
