@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind实例</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <style>
+        .classA{
+            color: chartreuse
+        }
+        .classB{
+            color: red
+        }
+        .classC{
+            font-size: 10%;
+        }
+    
+    </style>
+
+
+    <h1>v-bind实例</h1>
+    <hr>
+    <div id="app">
+        <!--v-bind:src动态绑定了src的值-->
+        <p><img v-bind:src="imgSrc"  width="200px"></p>
+         <!--:href缩写语法-->
+        <p><a :href="url" target="_blank" >郭少华</a></p>
+        <hr>
+        <div :class="className">
+            绑定class
+        </div>
+        <hr>
+         <!--判断如果isOK为正确的时候classA样式生效-->
+        <input type="radio" value="正确" id="zq" v-model="isOk">
+        <label for="zq">正确</label>
+        <input type="radio" value="错误" id="cw" v-model="isOk">
+        <label for="cw">错误</label>
+        
+         <div :class="{classA:isOk=='正确' }">
+            绑定class中的判断
+        </div>
+        <hr>
+         <!--绑定多个class样式绑定class数组-->        
+        <div :class="[ysA,ysC]">
+             绑定class数组
+        </div>
+        <hr>
+         <!--三元运算符-->
+         <div :class="isOk=='正确'?ysA:ysB">
+            class中的三元运算符
+        </div>
+        <hr>
+        <!--color是CSS的写法后面是对应的绑定-->
+        <div :style="{color:red,fontSize:font}">
+            绑定style
+        </div>
+
+         <!--color是CSS的写法后面是对应的绑定-->
+        <div :style="styleObject">
+                绑定style对象
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        var app =  new Vue({
+            el:'#app',
+            data:{
+                imgSrc:'http://isujin.com/wp-content/uploads/2017/12/wallhaven-594603.jpg',
+                url:'http://www.guoshaohua.cn',
+                className:'classA',
+                isOk:'正确',
+                ysA:'classA',
+                ysB:'classB',
+                ysC:'classC',
+                red:'red',
+                font:'20px',
+                styleObject:{
+                    color:'green',
+                    fontSize:'40px'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
