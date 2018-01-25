@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component初识组件</title>
+    <script type="text/javascript"  src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <guosh></guosh>
+        <guo></guo>
+    </div>
+    
+    <script type="text/javascript">
+        Vue.component("guosh",{
+            template:`<div style="color:red">我是全局组件</div>`
+        })
+
+        var app = new Vue({
+            el:"#app",
+            //定义局部组件
+            components: {
+                "guo":{
+                    template:"<div style='color:red'>我是局部组件</div>"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
