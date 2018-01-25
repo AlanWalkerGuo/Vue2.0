@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.extend扩展实例构造器</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="author"></div>
+    <script type="text/javascript">
+        var authorURL = Vue.extend({
+            template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
+            data:function(){
+                return{
+                    authorName:'guosh',
+                    authorUrl:'http://guoshaohua.cn'
+                }
+            }
+        });
+        //创建 authorUR 实例，并挂载到一个元素上
+        new authorURL().$mount("#author");
+    </script>
+</body>
+</html>

@@ -20,8 +20,10 @@
             app.$destroy(); //解除绑定
         }
         Vue.directive("guosh",{
-            
+            //el指令所绑定的元素，可以用来直接操作 DOM
+            //binding 一个对象 
             bind:function(el,binding){//被绑定
+                console.log(binding);
                 console.log('1 - bind');
                 el.style="color:"+binding.value;
             },
