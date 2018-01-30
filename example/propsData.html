@@ -11,14 +11,15 @@
     <header></header>
     <script type="text/javascript">
         var header=Vue.extend({
-            template:`<p>{{message}}</p>`,
+            template:`<p>{{message}}-{{a}}</p>`,
             data:function(){
                 return{
                     message:'Hello'
                 }
-            }
+            },
+            props: ['a']
         });
-        new header().$mount('header');
+        new header({propsData:{a:1}}).$mount('header');
     </script>
 </body>
 </html>

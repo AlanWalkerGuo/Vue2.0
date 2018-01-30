@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed Option  计算选项</title>
+    <script type="text/javascript"  src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        金额:{{newPrice}}
+        <ul>
+            <li v-for="newList in newLists">
+                标题:{{newList.title}} 时间:{{newList.date}}
+            </li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+        var list=[
+            {title:'文章1',date:'2018/1/10'},
+            {title:'文章2',date:'2018/1/12'},
+            {title:'文章3',date:'2018/1/22'}
+        ]
+        var app=new Vue({
+            el:'#app',
+            data:{
+                price:10,
+                list:list
+            },
+            computed: {
+                newPrice:function(){
+                    //返回新的格式
+                    return this.price="￥"+this.price+"元"
+                },
+                newLists:function(){
+                    //反转数组顺序
+                    return this.list.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
