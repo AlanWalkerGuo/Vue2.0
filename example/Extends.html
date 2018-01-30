@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Extends</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+        <p><button @click="add">增加</button></p>
+    </div>
+    <script type="text/javascript">
+        var addLog={
+            created:function(){
+                console.log("我是被扩展出来的");
+            },
+            methods: {
+                add:function(){
+                    console.log('我是被扩展出来的方法！');
+                }
+            }
+        }
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods: {
+                add:function(){
+                    console.log("我是原生的方法");
+                }
+            },
+            //把添加的额外功能加到minxins
+           extends:addLog
+        })
+    </script>
+</body>
+</html>

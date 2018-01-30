@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mixins</title>
+    <script type="text/javascript"  src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+        <p><button @click="add">增加</button></p>
+    </div>
+    <script type="text/javascript">
+        var addLog={
+            updated:function(){
+                console.log("数据发生变化,变化成了"+this.num);
+            }
+        }
+        //全局API混入方式
+        Vue.mixin({
+            updated:function(){
+                console.log("全局混入");
+            }
+        })
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods: {
+                add:function(){
+                    this.num++;
+                }
+            },
+            //把添加的额外功能加到minxins
+            mixins:[addLog]
+        })
+    </script>
+</body>
+</html>
