@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Examples Method Demo</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <button onclick="destroy()">卸载</button>
+    <button onclick="reload()">更新</button>
+    <button onclick="tick()">更改数据</button>
+    <script type="text/javascript">
+        var guo = Vue.extend({
+            template: `<p>{{message}}</p>`,
+            data: function () {
+                return {
+                    message: 'hello'
+                }
+            },
+            destroyed: function () {
+                console.log("被卸载了");
+            },
+            updated: function () {
+                console.log("被更新了");
+            }
+        })
+        //$mount()挂载扩展 
+        var vm = new guo().$mount("#app");
+        //$destroy()卸载方法
+        function destroy() {
+            vm.$destroy();
+        }
+        //$forceUpdate() 更新方法
+        function reload() {
+            vm.$forceUpdate();
+        }
+        //$nextTick() 数据修改方法
+        function tick() {
+            vm.message = "update message info ";
+            vm.$nextTick(function () {
+                console.log('message更新完后我被调用了');
+            })
+        }
+
+    </script>
+</body>
+
+</html>

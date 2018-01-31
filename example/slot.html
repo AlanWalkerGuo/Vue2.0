@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内置组件 -slot</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <guosh>
+            <span slot="bolgUrl">{{guoshData.bolgUrl}}</span>
+            <span slot="netName">{{guoshData.netName}}</span>
+        </guosh>
+    </div>
+    <template id="tmp">
+        <div>
+            <p>博客地址:<slot name="bolgUrl"></slot></p>
+            <p>名字:<slot name="netName"></slot></p>
+        </div>
+    </template>
+    <script type="text/javascript">
+        var guosh={
+            template:"#tmp"
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                guoshData:{
+                    bolgUrl:'http://guoshaohua.cn',
+                    netName:'郭少华'
+                }
+            },
+            components: {
+                "guosh":guosh
+            }
+        })
+    </script>
+</body>
+</html>
